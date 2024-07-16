@@ -1,0 +1,96 @@
+/*!----- RESET ------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Principal{
+    background-color: black;
+    color: white;
+}
+
+/*!----- HEADER -----*/
+.encabezado{
+display: flex;
+text-align: center;
+justify-content: space-around;
+padding: 10px;
+font-size: 35px;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+.Carrito-de-compras{
+width: 30px;
+height: 30px;
+}
+
+.Lista{
+    display: flex;
+    font-size: 35px;
+    justify-content: center;
+}
+
+.Lista ul{
+    list-style: none;
+    display: flex;
+
+}
+
+.Lista ul a {
+    text-decoration: none;
+    color: white;
+    margin: 30px;
+}
+
+
+/*!----- MAIN ------*/
+.hero{
+    width: 100%;
+    height: 600px;
+    background-image: url(../img/panqueque-principal.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.Carta-fb{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.Carta{
+    width: 436px;
+    height: 400px;
+    border: 1px white;
+    text-align: center;
+    margin: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+.Imagen-carta{
+    width: 250px;
+    height: 250px;
+}
+
+.Titulo-carta{
+    margin: 10px;
+}
+
+.Precio-carta{
+    margin: 10px;
+}
+
+.Boton-carta{
+    text-decoration: none;
+    color: white;
+    border-color: white;
+}
+
+.Boton-carta:hover{
+    color: green;
+}
