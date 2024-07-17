@@ -1,181 +1,81 @@
-/*function pedido() {
+let nombre;
 
-    let nombre;
+function pedirNombre() {
+    while (!nombre) {
+        nombre = prompt("Bienvenido a nuestra tienda. Por favor ingrese su nombre").toLowerCase();
+        if (nombre.length < 3 || nombre.length > 20) {alert("Nombre invalido. Por favor ingrese un nombre con un mínimo de 3 letras y máximo de 20");
+        nombre = null;
+        }
+    }
+}
 
+pedirNombre();
+
+const valor = {
+    1: 1000,
+    2: 2000,
+    3: 2500,
+    4: 2500,
+    5: 3000,
+    6: 4000,
+};
+
+let compraTotal = 0;
+
+function pedido() {
+    let agregar;
     do {
-        nombre = prompt("Bienvenido a Hamburguesería Kian. Por favor ingrese su nombre.");
+        
+        let Panqueque;
+        let elecciónPanqueque;
 
-    } while (nombre.length < 3 || nombre.length > 12);
+        while (!elecciónPanqueque){
 
-    //Utilización de IF
-    //if(hamburguesa.toLowerCase() == "hamburguesa simple"){
-    //    alert(nombre + " seleccionaste una Hamburguesa Simple");
-    //    }
-    //    else if (hamburguesa.toLowerCase() == "hamburguesa completa"){
-    //        alert(nombre + " seleccionaste una Hamburguesa Completa");
-    //    }
-    //    else if (hamburguesa.toLowerCase() == "hamburguesa kian"){
-    //        alert(nombre + " seleccionaste una Hamburguesa Kian");
-    //    }
-    //    else{
-    //        alert("Nombre de hamburguesa incorrecta")
-    //    }
+            Panqueque = prompt(nombre + " que panqueque desearías pedir?(Seleccione un numero del 1 al 6) \n1.Panqueque.  \n2.Panqueque con dulce de leche. \n3. Panqueque con frutilla y crema \n4. Panqueque de banana \n5. Panqueque Salado \n6. Panqueque Especial ");
 
-    const valor = {
-        simple: 3000,
-        completa: 4000,
-        kian: 5000,
-    };
+        switch (Panqueque) {
 
-    let compraTotal = 0;
-
-    do {
-
-        let hamburguesa = prompt(nombre + " que hamburguesa desearías pedir? \n1.Simple.  \n2.Completa.  \n3.Kian. ");
-
-        let eleccionHamburguesa;
-
-        switch (hamburguesa.toLowerCase()) {
-
-            case "simple":
-                eleccionHamburguesa = "simple";
-                alert(nombre + " seleccionaste una Hamburguesa Simple.");
+            case "1":
+                elecciónPanqueque = [1];
+                alert(nombre + " seleccionaste un panqueque Simple.");
                 break;
 
-            case "completa":
-                elecciónHamburguesa = "completa";
-                alert(nombre + " seleccionaste una Hamburguesa Completa.");
+            case "2":
+                elecciónPanqueque = [2];
+                alert(nombre + " seleccionaste un panqueque con dulce de leche.");
                 break;
 
-            case "kian":
-                eleccionHamburguesa = "kian";
-                alert(nombre + " seleccionaste una Hamburguesa Kian.");
+            case "3":
+                elecciónPanqueque = [3];
+                alert(nombre + " seleccionaste un panqueque con frutilla y crema.");
                 break;
 
+            case "4":
+                elecciónPanqueque = [4];
+                alert(nombre + " seleccionaste un panqueque de banana.");
+                break;
+            case "5":
+                elecciónPanqueque = [5];
+                alert(nombre + " seleccionaste un panqueque salado.");
+                break;
+            case "6":
+                elecciónPanqueque = [6];
+                alert(nombre + " seleccionaste un panqueque especial.");
+                break;
             default:
-                alert("Nombre de hamburguesa incorrecta");
+                alert("Numero de panqueque incorrecto");
+        }
+    }
+
+        if (elecciónPanqueque) {
+            compraTotal += valor[elecciónPanqueque];
+            alert(" El valor total es : $" + valor[elecciónPanqueque]);
         }
 
-        if (eleccionHamburguesa) {
-            compraTotal += valor[eleccionHamburguesa];
-            alert("Su pedido es hamburguesa " + eleccionHamburguesa + ". El valor total es : $" + valor[eleccionHamburguesa]);
-        }
-
-        var agregar = prompt("Desearía agregar algo mas? Si o No").toLowerCase();
-
+        agregar = prompt("Desearía agregar algo mas? Si o No").toLowerCase();
+    
     } while (agregar === "si");
 
     alert("Muchas gracias por su compra, el precio final es : $" + compraTotal);
 }
-pedido()
-//* En este código se puede visualizar como primero le pedimos que ingrese un nombre valido, luego hago unas variables de almacenamiento, después determino la eleccion del pedido, se suma el precio total, se hace un ciclo por si quiere agregar mas elecciones y al final le muestra el resultado total.
-*/
-
-
-/*let bebida = prompt("Ingrese vino, cerveza, refresco o agua").toLowerCase();
-if (bebida == "vino" || bebida == "cerveza" || bebida == "refresco" || bebida == "agua"){
-    alert("Dirigase al bar")
-}
-    else{ alert("Dirigase a la tienda")}
-*/
-
-/*let kilometros = parseInt(prompt("Ingrese kilometros recorridos"));
-let horas = parseInt(prompt("Ingrese horas recorridas"));
-
-let resta = parseInt(kilometros/horas);
-
-if(resta <= 60 && resta >= 40){
-    alert("Aprobado")
-}
-else{
-    alert("Desaprobado");
-}
-*/
-
-/*function pedirNombre() {
-    let nombre;
-    while (!nombre || nombre.length <= 3) {
-        nombre = prompt("Por favor, ingrese su nombre (debe tener más de 3 letras):");
-        if (!nombre || nombre.length <= 3) {
-            alert("Nombre incorrecto, vuelva a intentarlo.");
-        }
-    }
-    nombre = nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase();
-    alert("¡Bienvenido, " + nombre + "!");
-}
-pedirNombre();
-
-
-
-function compra() {
-    const opciones = {
-        manzana: 2.5,
-        banana: 1.75,
-        naranja: 3.0
-    };
-
-    let total = 0;
-    let seguirComprando = true;
-
-    while (seguirComprando) {
-        const opcion = prompt("Por favor, ingresa una opción (manzana, banana o naranja):").toLowerCase();
-        switch (opcion) {
-            case "manzana":
-                total += opciones.manzana;
-                break;
-            case "banana":
-                total += opciones.banana;
-                break;
-            case "naranja":
-                total += opciones.naranja;
-                break;
-            default:
-                alert("¡Opción inválida! Por favor, selecciona una opción válida.");
-                continue;
-        }
-
-        seguirComprando = confirm("¿Deseas agregar otra opción?");
-    }
-
-    alert(`Gracias por tu compra. El precio total es $${total.toFixed(2)}.`);
-}
-
-// Llama a la función para comenzar la compra
-compra();
-
-/*function compra() {
-    const opciones = {
-        manzana: 2.5,
-        banana: 1.75,
-        naranja: 3.0
-    };
-
-    let total = 0;
-    let seguirComprando = true;
-
-    while (seguirComprando) {
-        const opcion = prompt("Por favor, ingresa una opción (manzana, banana o naranja):").toLowerCase();
-        switch (opcion) {
-            case "manzana":
-                total += opciones.manzana;
-                break;
-            case "banana":
-                total += opciones.banana;
-                break;
-            case "naranja":
-                total += opciones.naranja;
-                break;
-            default:
-                alert("¡Opción inválida! Por favor, selecciona una opción válida.");
-                continue;
-        }
-
-        seguirComprando = confirm("¿Deseas agregar otra opción?");
-    }
-
-    alert(`Gracias por tu compra. El precio total es $${total.toFixed(2)}.`);
-}
-
-// Llama a la función para comenzar la compra
-compra();
-*/
+pedido();
