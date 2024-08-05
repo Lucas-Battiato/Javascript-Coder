@@ -5,47 +5,54 @@
     box-sizing: border-box;
 }
 
-.Principal{
+body {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    color: white;
+    background-color: black;
+    line-height: 1.6;
+}
+
+.container{
+    max-width: 1500px; 
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/*!----- HEADER -----*/
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 35px;
     background-color: black;
     color: white;
 }
 
-/*!----- HEADER -----*/
-.encabezado{
-display: flex;
-text-align: center;
-justify-content: space-around;
-padding: 10px;
-font-size: 35px;
-font-family: Arial, Helvetica, sans-serif;
-}
-
-.Carrito-de-compras{
-width: 30px;
-height: 30px;
-}
-
-.Lista{
+.Lista {
     display: flex;
-    font-size: 35px;
     justify-content: center;
 }
 
-.Lista ul{
+.Lista ul {
     list-style: none;
     display: flex;
-
+    gap: 30px;
+    font-size: 20px;
 }
 
 .Lista ul a {
     text-decoration: none;
     color: white;
-    margin: 30px;
+    transition: color 0.3s ease;
 }
 
+.Lista ul a:hover {
+    color: green;
+}
 
 /*!----- MAIN ------*/
-.hero{
+.hero {
     width: 100%;
     height: 600px;
     background-image: url(../img/panqueque-principal.jpg);
@@ -55,42 +62,112 @@ height: 30px;
     background-attachment: fixed;
 }
 
-.Carta-fb{
+.Cambio-pagina{
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    flex-direction: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 30px;
 }
 
-.Carta{
-    width: 436px;
-    height: 400px;
-    border: 1px white;
-    text-align: center;
-    margin: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+.Productos {
+    padding: 20px;
+}
+
+.Aside-categorias {
+    flex: 1;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid white;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: center; 
+    justify-content: center; 
+
+}
+
+.Aside-categorias p {
+    margin-bottom: 10px; 
+    color: white; 
+    padding-left: 30px;
+    padding-right: 30px;
     font-size: 20px;
 }
 
-.Imagen-carta{
-    width: 250px;
-    height: 250px;
+
+.Carta-fb {
+    flex: 3;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
 }
 
-.Titulo-carta{
+.Carta {
+    width: calc(33.333% - 40px); 
+    border: 1px solid white;
+    text-align: center;
     margin: 10px;
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-radius: 10px;
 }
 
-.Precio-carta{
-    margin: 10px;
+.Carta:hover {
+    transform: scale(1.05);
+    background-color: #2a2a2a;
+    color: #fff;
 }
 
-.Boton-carta{
+.Imagen-carta {
+    width: 100%;
+    height: 200px; 
+    object-fit: cover; 
+    margin-bottom: 15px;
+}
+
+.Titulo-carta {
+    margin: 10px 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.Precio-carta {
+    margin: 10px 0;
+    font-size: 20px;
+    color: #FFD700; 
+}
+
+.Boton-carta {
     text-decoration: none;
     color: white;
-    border-color: white;
+    border: 1px solid white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.Boton-carta:hover{
-    color: green;
+.Boton-carta:hover {
+    color: black;
+    background-color:white;
+}
+
+.ubicacion{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px; 
+}
+
+.informacion{
+    margin: 20px;
+    padding: 30px;
+    border: 1px solid #ccc; /* Borde para los párrafos */
+    border-radius: 25px;
+    font-size: 23px;
+
 }

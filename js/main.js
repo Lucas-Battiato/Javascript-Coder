@@ -3,79 +3,89 @@ let nombre;
 function pedirNombre() {
     while (!nombre) {
         nombre = prompt("Bienvenido a nuestra tienda. Por favor ingrese su nombre").toLowerCase();
-        if (nombre.length < 3 || nombre.length > 20) {alert("Nombre invalido. Por favor ingrese un nombre con un mínimo de 3 letras y máximo de 20");
-        nombre = null;
+        if (nombre.length < 3 || nombre.length > 20) {
+            alert("Nombre invalido. Por favor ingrese un nombre con un mínimo de 3 letras y máximo de 20");
+            nombre = null;
         }
     }
+
+    const diasConDescuento10 = ['lunes', 'miércoles', 'viernes'];
+    const diasConDescuento5 = ['sábado', 'domingo'];
+    alert(`${nombre}, queremos informarle que los días ${diasConDescuento10.join(', ')} tenemos un 10% de descuento y los días ${diasConDescuento5.join(', ')} tenemos un 5% de descuento en el total de la compra.`);
 }
 
 pedirNombre();
 
-const valor = {
-    1: 1000,
-    2: 2000,
-    3: 2500,
-    4: 2500,
-    5: 3000,
-    6: 4000,
-};
+const panqueques = [
+    { nombre: "Panqueque Simple", precio: 1000 },
+    { nombre: "Panqueque con dulce de leche", precio: 2000 },
+    { nombre: "Panqueque con frutilla y crema", precio: 2500 },
+    { nombre: "Panqueque de banana", precio: 2500 },
+    { nombre: "Panqueque Salado", precio: 3000 },
+    { nombre: "Panqueque Especial", precio: 4000 },
+];
 
 let compraTotal = 0;
+let ahorroTotal = 0;
+
+function obtenerDescuento() {
+    const diasConDescuento10 = [1, 3, 5];
+    const diasConDescuento5 = [6, 0]; 
+    const hoy = new Date().getDay();
+
+    if (diasConDescuento10.includes(hoy)) {
+        return Math.round(0.10 * 100) / 100; 
+    } else if (diasConDescuento5.includes(hoy)) {
+        return Math.round(0.05 * 100) / 100; 
+    }
+    return 0;
+}
+
+function mostrarPanqueques() {
+    let mensaje = `${nombre}, ¿qué panqueque desearías pedir? (Seleccione un número del 1 al ${panqueques.length})\n`;
+    panqueques.forEach((panqueque, index) => {
+        mensaje += `${index + 1}. ${panqueque.nombre} - $${panqueque.precio}\n`;
+    });
+    return mensaje;
+}
 
 function pedido() {
     let agregar;
+    const descuento = obtenerDescuento();
     do {
-        
         let Panqueque;
         let elecciónPanqueque;
 
-        while (!elecciónPanqueque){
+        while (!elecciónPanqueque) {
+            Panqueque = prompt(mostrarPanqueques());
 
-            Panqueque = prompt(nombre + " que panqueque desearías pedir?(Seleccione un numero del 1 al 6) \n1.Panqueque.  \n2.Panqueque con dulce de leche. \n3. Panqueque con frutilla y crema \n4. Panqueque de banana \n5. Panqueque Salado \n6. Panqueque Especial ");
-
-        switch (Panqueque) {
-
-            case "1":
-                elecciónPanqueque = [1];
-                alert(nombre + " seleccionaste un panqueque Simple.");
-                break;
-
-            case "2":
-                elecciónPanqueque = [2];
-                alert(nombre + " seleccionaste un panqueque con dulce de leche.");
-                break;
-
-            case "3":
-                elecciónPanqueque = [3];
-                alert(nombre + " seleccionaste un panqueque con frutilla y crema.");
-                break;
-
-            case "4":
-                elecciónPanqueque = [4];
-                alert(nombre + " seleccionaste un panqueque de banana.");
-                break;
-            case "5":
-                elecciónPanqueque = [5];
-                alert(nombre + " seleccionaste un panqueque salado.");
-                break;
-            case "6":
-                elecciónPanqueque = [6];
-                alert(nombre + " seleccionaste un panqueque especial.");
-                break;
-            default:
-                alert("Numero de panqueque incorrecto");
+            const índice = parseInt(Panqueque) - 1;
+            if (índice >= 0 && índice < panqueques.length) {
+                elecciónPanqueque = panqueques[índice];
+                alert(`${nombre} seleccionaste un ${elecciónPanqueque.nombre}.`);
+            } else {
+                alert("Número de panqueque incorrecto");
+            }
         }
-    }
 
         if (elecciónPanqueque) {
-            compraTotal += valor[elecciónPanqueque];
-            alert(" El valor total es : $" + valor[elecciónPanqueque]);
+            let precioFinal = Math.round(elecciónPanqueque.precio * (1 - descuento));
+            let ahorro = Math.round(elecciónPanqueque.precio * descuento);
+            compraTotal += precioFinal; 
+            ahorroTotal += ahorro;
+            alert(`El valor del panqueque con descuento es: $${precioFinal.toFixed(2)}. Has ahorrado: $${ahorro.toFixed(2)}`);
         }
 
-        agregar = prompt("Desearía agregar algo mas? Si o No").toLowerCase();
-    
+        do {
+            agregar = prompt("¿Desearías agregar algo más? Si o No").toLowerCase();
+            if (agregar !== "si" && agregar !== "no") {
+                alert("Respuesta inválida. Por favor ingrese 'si' o 'no'.");
+            }
+        } while (agregar !== "si" && agregar !== "no");
+
     } while (agregar === "si");
 
-    alert("Muchas gracias por su compra, el precio final es : $" + compraTotal);
+    alert(`Muchas gracias por su compra, el precio final es: $${compraTotal.toFixed(2)}. Has ahorrado un total de: $${ahorroTotal.toFixed(2)} con un descuento del ${(descuento * 100).toFixed(0)}%.`);
 }
+
 pedido();
