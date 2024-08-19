@@ -1,41 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda</title>
-    <link rel="stylesheet" href=".//css/style.css">
+    <title>Tienda de Panqueques</title>
+    <link rel="stylesheet" href="./css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
-
 <body class="Principal">
     <header>
         <nav>
-
             <div class="encabezado">
-                <h1 class="Titulo-principal">Tienda de panqueques</h1>
+                <h1 class="Titulo-principal">Tienda de Panqueques</h1>
             </div>
             <div class="Lista">
                 <ul>
-                    <li>
-                        <a href="#inicio">Inicio</a>
-                    </li>
-                    <li>
-                        <a href="#menu">Menu</a>
-                    </li>
-                    <li>
-                        <a href="#contacto">Contacto</a>
-                    </li>
-                    <li>
-                        <a href="#ubicacion">Ubicación</a>
-                    </li>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#menu">Menú</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#ubicacion">Ubicación</a></li>
                 </ul>
             </div>
         </nav>
-        </div>
     </header>
     <main>
+        <!-- Carrito de compras -->
+        <div class="carrito-icono" id="carritoIcono">
+            <img src="./img/carrito.png" alt="Carrito" class="img-carrito">
+            <span id="carrito-cantidad" class="carrito-cantidad"></span>
+        </div>
+
+        <!-- Pestaña oculta del carrito de compras -->
+        <div class="pestana-carrito" id="pestanaCarrito">
+            <div class="carrito-header">
+                <h2>Carrito de Compras</h2>
+                <span id="cerrarCarrito">✖</span>
+            </div>
+            <div class="carrito-vacio" id="carrito-vacio">
+                <p>No hay productos en el carrito.</p>
+            </div>
+            <div id="carrito-contenido"></div>
+            <div class="carrito-total">
+                <p id="precio-total"></p>
+            </div>
+            <button id="vaciar-carrito">Vaciar Carrito</button>
+            <button id="finalizar-compra">Finalizar Compra</button>
+        </div>
+
         <div class="container">
             <div class="hero" id="inicio">
                 <img class="img-panqueque" alt="">
@@ -45,69 +56,31 @@
             </div>
             <section class="Productos" id="menu">
                 <aside class="Aside-categorias">
-                    <p>Panqueques simples</p>
-                    <p>Panqueques dulces</p>
-                    <p>Panqueques salados</p>
+                    <p class="categoria" data-categoria="todos">Panqueques</p>
+                    <p class="categoria" data-categoria="simples">Panqueques Simples</p>
+                    <p class="categoria" data-categoria="dulces">Panqueques Dulces</p>
+                    <p class="categoria" data-categoria="salados">Panqueques Salados</p>
                 </aside>
-                <div class="Carta-fb">
-                    <div class="Carta">
-                        <img src="./img/panqueques.jpg" class="Imagen-carta" alt="">
-                        <h2 class="Titulo-carta">Panqueque</h2>
-                        <p class="Precio-carta">1000$</p>
-                        <a class="Boton-carta" href="">Comprar</a>
-                    </div>
-                    <div class="Carta">
-                        <img src="./img/panqueques-dlc.jpg" class="Imagen-carta" alt="">
-                        <h2 class="Titulo-carta">Panqueque con Dulce de Leche</h2>
-                        <p class="Precio-carta">2000$</p>
-                        <a class="Boton-carta" href="">Comprar</a>
-                    </div>
-                    <div class="Carta">
-                        <img src="./img/panqueques-de-frutilla-y-crema-chantilly.jpg" class="Imagen-carta" alt="">
-                        <h2 class="Titulo-carta">Panqueque con Frutilla y Crema</h2>
-                        <p class="Precio-carta">2500$</p>
-                        <a class="Boton-carta" href="">Comprar</a>
-                    </div>
-                    <div class="Carta">
-                        <img src="./img/crepes-de-chocolate-y-platano.jpg" class="Imagen-carta" alt="">
-                        <h2 class="Titulo-carta">Panqueque de Banana</h2>
-                        <p class="Precio-carta">2500$</p>
-                        <a class="Boton-carta" href="">Comprar</a>
-                    </div>
-                    <div class="Carta">
-                        <img src="./img/salado.jpg" class="Imagen-carta" alt="">
-                        <h2 class="Titulo-carta">Panqueque Salado</h2>
-                        <p class="Precio-carta">3000$</p>
-                        <a class="Boton-carta" href="">Comprar</a>
-                    </div>
-                    <div class="Carta">
-                        <img src="./img/especial.jpg" class="Imagen-carta" alt="">
-                        <h2 class="Titulo-carta">Panqueque Especial</h2>
-                        <p class="Precio-carta">4000$</p>
-                        <a class="Boton-carta" href="">Comprar</a>
-                    </div>
-                </div>
-            </section>
-            <section id="contacto">
-
+                <div class="Carta-fb" id="carr"></div>
             </section>
             <section id="ubicacion">
                 <div class="ubicacion">
                     <div class="informacion">
-                        <p>Direccion: Calle de prueba 123, Buenos Aires</p>
+                        <p>Dirección: Calle de prueba 123, Buenos Aires</p>
                         <p>Contacto: 11 1234-5678</p>
-                        <p>Para mas informacion: asd@gmail.com</p>
+                        <p>Para más información: asd@gmail.com</p>
                     </div>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105073.27471129621!2d-58.51587100519386!3d-34.6157959329818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca3b4ef90cbd%3A0xa0b3812e88e88e87!2sBuenos%20Aires%2C%20Cdad.%20Aut%C3%B3noma%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1722464639134!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105073.27471129621!2d-58.51587100519386!3d-34.6157959329818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca3b4ef90cbd%3A0xa0b3812e88e88e87!2sBuenos%20Aires%2C%20Cdad.%20Aut%C3%B3noma%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1722464639134!5m2!1ses!2sar"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </section>
         </div>
     </main>
     <footer>
-
+        <h3 class="copyright">© Lucas Battiato</h3>
     </footer>
-
+    <script src="./js/productos.js"></script>
     <script src="./js/main.js"></script>
 </body>
-
 </html>

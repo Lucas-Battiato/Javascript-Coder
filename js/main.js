@@ -1,91 +1,123 @@
-let nombre;
+    const contenedorCartas = document.querySelector('#carr');
+    const categorias = document.querySelectorAll('.categoria');
+    const carritoIcono = document.querySelector("#carritoIcono");
+    const pestanaCarrito = document.querySelector("#pestanaCarrito");
+    const cerrarCarrito = document.querySelector("#cerrarCarrito");
+    const carritoVacio = document.querySelector("#carrito-vacio");
+    const carritoContenido = document.querySelector("#carrito-contenido");
+    const precioTotalElement = document.querySelector("#precio-total");
+    const finalizarCompraButton = document.querySelector("#finalizar-compra");
+    const vaciarCarritoButton = document.querySelector("#vaciar-carrito");
+    const carritoCantidad = document.querySelector("#carrito-cantidad");
 
-function pedirNombre() {
-    while (!nombre) {
-        nombre = prompt("Bienvenido a nuestra tienda. Por favor ingrese su nombre").toLowerCase();
-        if (nombre.length < 3 || nombre.length > 20) {
-            alert("Nombre invalido. Por favor ingrese un nombre con un mínimo de 3 letras y máximo de 20");
-            nombre = null;
-        }
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    function actualizarCarrito() {
+        carritoContenido.innerHTML = "";
+
+        carrito.forEach((producto, index) => {
+            let contenido = document.createElement("div");
+            contenido.className = "item-carrito";
+            const precioProducto = producto.precio * producto.cantidad;
+            contenido.innerHTML = `
+                <img src="${producto.img}" class="carrito-img">
+                <h3 class="carrito-titulo">${producto.titulo}</h3>
+                <p class="carrito-precio">Precio: ${precioProducto}$ Cantidad: ${producto.cantidad}</p>
+                <button class="boton-mas" data-index="${index}">+</button>
+                <button class="boton-menos" data-index="${index}">-</button>`;
+
+            carritoContenido.append(contenido);
+
+            const botonMas = contenido.querySelector(".boton-mas");
+            const botonMenos = contenido.querySelector(".boton-menos");
+
+            botonMas.addEventListener("click", () => {
+                producto.cantidad++;
+                actualizarCarrito();
+            });
+
+            botonMenos.addEventListener("click", () => {
+                if (producto.cantidad > 1) {
+                    producto.cantidad--;
+                } else {
+                    carrito.splice(index, 1);
+                }
+                actualizarCarrito();
+            });
+        });
+
+        const precioTotal = carrito.reduce((total, producto) => total + producto.precio * producto.cantidad, 0);
+        precioTotalElement.innerText = `Precio total: $${precioTotal}`;
+
+        carritoVacio.style.display = carrito.length === 0 ? "block" : "none";
+        carritoContenido.style.display = carrito.length === 0 ? "none" : "block";
+
+        finalizarCompraButton.style.display = precioTotal > 0 ? "block" : "none";
+        vaciarCarritoButton.style.display = precioTotal > 0 ? "block" : "none";
+        precioTotalElement.style.display = precioTotal > 0 ? "block" : "none";
+
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+
+        const cantidadTotal = carrito.reduce((total, producto) => total + producto.cantidad, 0);
+        carritoCantidad.innerText = cantidadTotal;
+        carritoCantidad.style.display = pestanaCarrito.classList.contains("pestana-carrito-mostrar") ? "none" : "inline";
     }
 
-    const diasConDescuento10 = ['lunes', 'miércoles', 'viernes'];
-    const diasConDescuento5 = ['sábado', 'domingo'];
-    alert(`${nombre}, queremos informarle que los días ${diasConDescuento10.join(', ')} tenemos un 10% de descuento y los días ${diasConDescuento5.join(', ')} tenemos un 5% de descuento en el total de la compra.`);
-}
+    function mostrarProductos(categoriaSeleccionada) {
+        contenedorCartas.innerHTML = productos
+            .filter(producto => categoriaSeleccionada === 'todos' || producto.categoria === categoriaSeleccionada)
+            .map(producto => `
+                <div class="Carta">
+                    <img src="${producto.img}" class="Imagen-carta" alt="${producto.titulo}">
+                    <h2 class="Titulo-carta">${producto.titulo}</h2>
+                    <p class="Precio-carta">${producto.precio}$</p>
+                    <button class="Boton-carta" data-titulo="${producto.titulo}">Comprar</button>
+                </div>
+            `)
+            .join('');
 
-pedirNombre();
-
-const panqueques = [
-    { nombre: "Panqueque Simple", precio: 1000 },
-    { nombre: "Panqueque con dulce de leche", precio: 2000 },
-    { nombre: "Panqueque con frutilla y crema", precio: 2500 },
-    { nombre: "Panqueque de banana", precio: 2500 },
-    { nombre: "Panqueque Salado", precio: 3000 },
-    { nombre: "Panqueque Especial", precio: 4000 },
-];
-
-let compraTotal = 0;
-let ahorroTotal = 0;
-
-function obtenerDescuento() {
-    const diasConDescuento10 = [1, 3, 5];
-    const diasConDescuento5 = [6, 0]; 
-    const hoy = new Date().getDay();
-
-    if (diasConDescuento10.includes(hoy)) {
-        return Math.round(0.10 * 100) / 100; 
-    } else if (diasConDescuento5.includes(hoy)) {
-        return Math.round(0.05 * 100) / 100; 
+        document.querySelectorAll(".Boton-carta").forEach(boton => {
+            boton.addEventListener("click", () => {
+                const titulo = boton.getAttribute("data-titulo");
+                const producto = productos.find(p => p.titulo === titulo);
+                const productoEnCarrito = carrito.find((item) => item.titulo === producto.titulo);
+                if (productoEnCarrito) {
+                    productoEnCarrito.cantidad++;
+                } else {
+                    carrito.push({ ...producto, cantidad: 1 });
+                }
+                actualizarCarrito();
+            });
+        });
     }
-    return 0;
-}
 
-function mostrarPanqueques() {
-    let mensaje = `${nombre}, ¿qué panqueque desearías pedir? (Seleccione un número del 1 al ${panqueques.length})\n`;
-    panqueques.forEach((panqueque, index) => {
-        mensaje += `${index + 1}. ${panqueque.nombre} - $${panqueque.precio}\n`;
+    categorias.forEach(categoria => {
+        categoria.addEventListener('click', () => {
+            const categoriaSeleccionada = categoria.getAttribute('data-categoria');
+            mostrarProductos(categoriaSeleccionada);
+        });
     });
-    return mensaje;
-}
 
-function pedido() {
-    let agregar;
-    const descuento = obtenerDescuento();
-    do {
-        let Panqueque;
-        let elecciónPanqueque;
+    carritoIcono.addEventListener("click", () => {
+        pestanaCarrito.classList.toggle("pestana-carrito-mostrar");
+        carritoCantidad.style.display = pestanaCarrito.classList.contains("pestana-carrito-mostrar") ? "none" : "inline";
+    });
 
-        while (!elecciónPanqueque) {
-            Panqueque = prompt(mostrarPanqueques());
+    cerrarCarrito.addEventListener("click", () => {
+        pestanaCarrito.classList.remove("pestana-carrito-mostrar");
+        carritoCantidad.style.display = "inline";
+    });
 
-            const índice = parseInt(Panqueque) - 1;
-            if (índice >= 0 && índice < panqueques.length) {
-                elecciónPanqueque = panqueques[índice];
-                alert(`${nombre} seleccionaste un ${elecciónPanqueque.nombre}.`);
-            } else {
-                alert("Número de panqueque incorrecto");
-            }
-        }
+    finalizarCompraButton.addEventListener("click", () => {
+        carrito = [];
+        localStorage.removeItem("carrito");
+        actualizarCarrito();
+    });
 
-        if (elecciónPanqueque) {
-            let precioFinal = Math.round(elecciónPanqueque.precio * (1 - descuento));
-            let ahorro = Math.round(elecciónPanqueque.precio * descuento);
-            compraTotal += precioFinal; 
-            ahorroTotal += ahorro;
-            alert(`El valor del panqueque con descuento es: $${precioFinal.toFixed(2)}. Has ahorrado: $${ahorro.toFixed(2)}`);
-        }
+    vaciarCarritoButton.addEventListener("click", () => {
+        carrito = [];
+        actualizarCarrito();
+    });
 
-        do {
-            agregar = prompt("¿Desearías agregar algo más? Si o No").toLowerCase();
-            if (agregar !== "si" && agregar !== "no") {
-                alert("Respuesta inválida. Por favor ingrese 'si' o 'no'.");
-            }
-        } while (agregar !== "si" && agregar !== "no");
-
-    } while (agregar === "si");
-
-    alert(`Muchas gracias por su compra, el precio final es: $${compraTotal.toFixed(2)}. Has ahorrado un total de: $${ahorroTotal.toFixed(2)} con un descuento del ${(descuento * 100).toFixed(0)}%.`);
-}
-
-pedido();
+    actualizarCarrito();
+    mostrarProductos('todos');
