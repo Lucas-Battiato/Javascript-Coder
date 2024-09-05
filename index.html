@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda de Panqueques</title>
+    <link rel="icon" href="img/panqueques.png" type="image/png">
     <link rel="stylesheet" href="./css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
+
 <body class="Principal">
     <header>
         <nav>
@@ -17,7 +21,6 @@
                 <ul>
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#menu">Menú</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
                     <li><a href="#ubicacion">Ubicación</a></li>
                 </ul>
             </div>
@@ -25,9 +28,13 @@
     </header>
     <main>
         <!-- Carrito de compras -->
-        <div class="carrito-icono" id="carritoIcono">
-            <img src="./img/carrito.png" alt="Carrito" class="img-carrito">
-            <span id="carrito-cantidad" class="carrito-cantidad"></span>
+        <div>
+            <div class="carrito-icono" id="carritoIcono">
+                <img src="./img/carrito.png" alt="Carrito" class="img-carrito">
+                <span id="carrito-cantidad" class="carrito-cantidad"></span>
+
+            </div>
+            <button id="boton-tema" class="boton-tema">🌙</button>
         </div>
 
         <!-- Pestaña oculta del carrito de compras -->
@@ -61,7 +68,7 @@
                     <p class="categoria" data-categoria="dulces">Panqueques Dulces</p>
                     <p class="categoria" data-categoria="salados">Panqueques Salados</p>
                 </aside>
-                <div class="Carta-fb" id="carr"></div>
+                <div class="Carta-fb" id="carro"></div>
             </section>
             <section id="ubicacion">
                 <div class="ubicacion">
@@ -70,7 +77,8 @@
                         <p>Contacto: 11 1234-5678</p>
                         <p>Para más información: asd@gmail.com</p>
                     </div>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105073.27471129621!2d-58.51587100519386!3d-34.6157959329818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca3b4ef90cbd%3A0xa0b3812e88e88e87!2sBuenos%20Aires%2C%20Cdad.%20Aut%C3%B3noma%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1722464639134!5m2!1ses!2sar"
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105073.27471129621!2d-58.51587100519386!3d-34.6157959329818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca3b4ef90cbd%3A0xa0b3812e88e88e87!2sBuenos%20Aires%2C%20Cdad.%20Aut%C3%B3noma%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1722464639134!5m2!1ses!2sar"
                         width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
@@ -80,7 +88,10 @@
     <footer>
         <h3 class="copyright">© Lucas Battiato</h3>
     </footer>
-    <script src="./js/productos.js"></script>
+    <script src="./js/productos.json"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/main.js"></script>
 </body>
+
 </html>

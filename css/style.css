@@ -37,7 +37,7 @@ body {
 .Lista ul {
     list-style: none;
     display: flex;
-    gap: 30px;
+    gap: 50px;
     font-size: 30px;
 }
 
@@ -165,6 +165,31 @@ body {
 
 .Boton-carta:focus {
     outline: none;
+}
+
+.boton-tema {
+    position: fixed;
+    top: 20px;
+    right: 90px;
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.boton-tema {
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.boton-tema:hover {
+    color: #FFD700;
 }
 
 .ubicacion {
@@ -338,4 +363,126 @@ body {
 #vaciar-carrito:hover,
 #finalizar-compra:hover {
     background-color: #FFC107;
+}
+
+/* Modo Claro */
+
+body.modo-claro {
+    background-color: #f7f7f7;  
+    color: #333333; 
+}
+
+body.modo-claro .encabezado {
+    background-color: #ffffff; 
+    color: #333333; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+body.modo-claro .Lista ul a {
+    color: #333333;
+    transition: color 0.3s ease;
+}
+
+body.modo-claro .Lista ul a:hover {
+    color: #87ceeb;
+}
+
+body.modo-claro .Aside-categorias {
+    background-color: #ffffff; 
+    border-color: #87ceeb; 
+}
+
+body.modo-claro .Aside-categorias p {
+    color: #333333; 
+}
+
+body.modo-claro .Aside-categorias p:hover {
+    color: #fffacd; 
+    background-color: #87ceeb; 
+    border-radius: 10px; 
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.modo-claro .Carta {
+    background-color: #ffffff; 
+    border-color: #87ceeb; 
+    color: #333333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.modo-claro .Carta:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+}
+
+body.modo-claro .Titulo-carta {
+    color: #333333; 
+}
+
+body.modo-claro .Precio-carta {
+    color: #59b8ad; 
+}
+
+body.modo-claro .Boton-carta {
+    background-color: #87ceeb; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+body.modo-claro .Boton-carta:hover {
+    background-color: #b2f7ef; 
+    color: #333333; 
+}
+
+body.modo-claro .pestana-carrito {
+    background-color: #ffffff; 
+    color: #333333; 
+}
+
+body.modo-claro .carrito-header {
+    background-color: #87ceeb; 
+    color: white; 
+}
+
+body.modo-claro .item-carrito {
+    background-color: #f0f8ff; 
+    border: 1px solid #87ceeb; 
+    color: #333333; 
+}
+
+body.modo-claro #vaciar-carrito, body.modo-claro #finalizar-compra {
+    background-color: #b2f7ef; 
+    color: #333333; 
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+body.modo-claro #vaciar-carrito:hover, body.modo-claro #finalizar-compra:hover {
+    background-color: #fffacd; 
+}
+
+body.modo-claro .informacion p {
+    background-color: #ffffff;
+    color: #333333; 
+    border: 1px solid #87ceeb;
+}
+
+body.modo-claro .boton-tema {
+    color: #87ceeb; 
+}
+
+body.modo-claro .carrito-precio{
+    color: #59b8ad;
+}
+
+body.modo-claro .copyright{
+    color: white;
 }

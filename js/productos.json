@@ -1,0 +1,38 @@
+[
+    {
+        "img": "./img/panqueques.jpg",
+        "titulo": "Panqueque",
+        "precio": 1000,
+        "categoria": "simples"
+    },
+    {
+        "img": "./img/panqueques-dlc.jpg",
+        "titulo": "Panqueque con Dulce de Leche",
+        "precio": 2000,
+        "categoria": "dulces"
+    },
+    {
+        "img": "./img/panqueques-de-frutilla-y-crema-chantilly.jpg",
+        "titulo": "Panqueque con Frutilla y Crema",
+        "precio": 2500,
+        "categoria": "dulces"
+    },
+    {
+        "img": "./img/crepes-de-chocolate-y-platano.jpg",
+        "titulo": "Panqueque de Banana",
+        "precio": 2500,
+        "categoria": "dulces"
+    },
+    {
+        "img": "./img/salado.jpg",
+        "titulo": "Panqueque Salado",
+        "precio": 3000,
+        "categoria": "salados"
+    },
+    {
+        "img": "./img/especial.jpg",
+        "titulo": "Panqueque Especial",
+        "precio": 4000,
+        "categoria": "dulces"
+    }
+]
